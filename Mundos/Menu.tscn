@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Mundos/Menu.gd" type="Script" id=1]
+[ext_resource path="res://escenas/images.jpg" type="Texture" id=2]
+[ext_resource path="res://SMENUU/Pixel Bug.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://fuente.tres" type="DynamicFont" id=4]
+[ext_resource path="res://escenas/menusss2.png" type="Texture" id=5]
+[ext_resource path="res://Personajes/cuy2.png" type="Texture" id=6]
+[ext_resource path="res://audio/musicaf.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Mundos/AudioStreamPlayer.gd" type="Script" id=8]
+[ext_resource path="res://Personajes/cuy1.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "caminar",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fondo" type="Sprite" parent="."]
+position = Vector2( 933.428, 551.147 )
+scale = Vector2( 8.43207, 6.21703 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 656.597, 454.598 )
+scale = Vector2( 0.181836, 0.165501 )
+texture = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 627.901, 777.741 )
+scale = Vector2( 0.447514, 0.453846 )
+frames = SubResource( 1 )
+animation = "caminar"
+playing = true
+
+[node name="VBoxbotones" type="VBoxContainer" parent="."]
+anchor_left = 0.699
+anchor_top = 0.573
+anchor_right = 0.699
+anchor_bottom = 0.573
+margin_left = -379.08
+margin_top = -476.84
+margin_right = 669.92
+margin_bottom = 417.16
+custom_constants/separation = 50
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jugar" type="Button" parent="VBoxbotones"]
+margin_top = 255.0
+margin_right = 1049.0
+margin_bottom = 462.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Jugar"
+flat = true
+
+[node name="Salir" type="Button" parent="VBoxbotones"]
+margin_top = 512.0
+margin_right = 1049.0
+margin_bottom = 638.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "Salir"
+flat = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -25.0
+autoplay = true
+script = ExtResource( 8 )
+[connection signal="pressed" from="VBoxbotones/Jugar" to="." method="_on_Jugar_pressed"]
+[connection signal="pressed" from="VBoxbotones/Salir" to="." method="_on_Salir_pressed"]
